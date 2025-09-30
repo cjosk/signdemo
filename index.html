@@ -8,12 +8,45 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Dancing+Script&family=Lobster&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet">
-
     <style>
+        /*
+        GITHUB'DAN FONT NASIL EKLENİR?
+        ---------------------------------------------
+        Aşağıya her bir font için bir @font-face bloğu ekleyin.
+        - 'font-family' kısmına fonta vermek istediğiniz ismi yazın (bu ismi JS'de kullanacağız).
+        - 'src: url(...)' kısmına GitHub'daki font dosyasının RAW linkini yapıştırın.
+          GitHub'da font dosyasına gidin, "Raw" butonuna tıklayın ve açılan sayfanın URL'sini kopyalayın.
+        */
+        @font-face { font-family: 'Alex Brush'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Alex-Brush.ttf') format('truetype'); }
+        @font-face { font-family: 'Allura'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Allura.ttf') format('truetype'); }
+        @font-face { font-family: 'Amsterdam'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Amsterdam.ttf') format('truetype'); }
+        @font-face { font-family: 'Barcelona'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Barcelona.ttf') format('truetype'); }
+        @font-face { font-family: 'Bayview'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Bayview.ttf') format('truetype'); }
+        @font-face { font-family: 'Beachfront'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Beachfront.ttf') format('truetype'); }
+        @font-face { font-family: 'Buttercup'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Buttercup.ttf') format('truetype'); }
+        @font-face { font-family: 'Chelsea'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Chelsea.ttf') format('truetype'); }
+        @font-face { font-family: 'Classic'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Classic.ttf') format('truetype'); }
+        @font-face { font-family: 'Daydream'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Daydream.ttf') format('truetype'); }
+        @font-face { font-family: 'Freehand'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Freehand.ttf') format('truetype'); }
+        @font-face { font-family: 'George'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/George.ttf') format('truetype'); }
+        @font-face { font-family: 'Hammock'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Hammock.ttf') format('truetype'); }
+        @font-face { font-family: 'Honeymoon'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Honeymoon.ttf') format('truetype'); }
+        @font-face { font-family: 'Marquee'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Marquee.ttf') format('truetype'); }
+        @font-face { font-family: 'Mayfair'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Mayfair.ttf') format('truetype'); }
+        @font-face { font-family: 'Melbourne'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Melbourne.ttf') format('truetype'); }
+        @font-face { font-family: 'Neon Glow'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Neon-Glow.ttf') format('truetype'); }
+        @font-face { font-family: 'Neon Lite'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Neon-Lite.ttf') format('truetype'); }
+        @font-face { font-family: 'Neo Tokyo'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Neo-Tokyo.ttf') format('truetype'); }
+        @font-face { font-family: 'Nevada'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Nevada.ttf') format('truetype'); }
+        @font-face { font-family: 'North Shore'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/North-Shore.ttf') format('truetype'); }
+        @font-face { font-family: 'Photogenic'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Photogenic.ttf') format('truetype'); }
+        @font-face { font-family: 'Rocket'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Rocket.ttf') format('truetype'); }
+        @font-face { font-family: 'Royalty'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Royalty.ttf') format('truetype'); }
+        @font-face { font-family: 'Signature'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Signature.ttf') format('truetype'); }
+        @font-face { font-family: 'Typewriter'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Typewriter.ttf') format('truetype'); }
+        @font-face { font-family: 'Vibes'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Vibes.ttf') format('truetype'); }
+        @font-face { font-family: 'Wild Rose'; src: url('https://raw.githubusercontent.com/cjosk/createneonsign/6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Wild-Rose.ttf') format('truetype'); }
+
         /* Ekstra stiller ve font tanımlamaları */
         body {
             font-family: 'Inter', sans-serif; /* Tailwind'in varsayılan fontu */
@@ -26,7 +59,7 @@
             
         <!-- Önizleme Alanı -->
         <div id="preview-container" class="flex-grow flex flex-col items-center justify-center p-8 relative lg:w-2/3 transition-all duration-300 bg-cover bg-center" style="background-color: rgb(52, 58, 64);">
-            <div id="preview-text" class="w-full break-words whitespace-pre-wrap text-6xl md:text-8xl transition-all duration-300" style="text-align: center; font-family: &quot;Ms Madi&quot;, cursive; color: rgb(253, 244, 220); text-shadow: rgb(253, 244, 220) 0px 0px 5px, rgb(253, 244, 220) 0px 0px 10px, rgb(253, 244, 220) 0px 0px 25px;">
+            <div id="preview-text" class="w-full break-words whitespace-pre-wrap text-6xl md:text-8xl transition-all duration-300" style="text-align: center; font-family: &quot;Amsterdam&quot;; color: rgb(253, 244, 220); text-shadow: rgb(253, 244, 220) 0px 0px 5px, rgb(253, 244, 220) 0px 0px 10px, rgb(253, 244, 220) 0px 0px 25px;">
                 Kendin Tasarla!
             </div>
             
@@ -41,15 +74,18 @@
             <div class="p-6 md:p-8 space-y-8 overflow-y-auto flex-grow">
                 
                 <!-- Dil Seçici -->
-                <div id="language-selector" class="flex justify-end space-x-4 mb-4">
-                    <button data-lang="tr" class="flex items-center space-x-2 text-sm font-medium p-2 rounded-md">
-                        <span>🇹🇷</span>
-                        <span>Turkish</span>
-                    </button>
-                    <button data-lang="el" class="flex items-center space-x-2 text-sm font-medium p-2 rounded-md">
-                        <span>🇬🇷</span>
-                        <span>Greece</span>
-                    </button>
+                <div class="flex justify-between items-center mb-6">
+                    <span id="language-label" class="text-sm font-medium text-gray-700">Choose your language</span>
+                    <div id="language-buttons" class="flex items-center border border-gray-200 rounded-lg">
+                        <button data-lang="tr" class="flex items-center space-x-2 text-sm font-medium px-4 py-2 rounded-l-md transition-colors">
+                            <span>🇹🇷</span>
+                            <span>Turkish</span>
+                        </button>
+                        <button data-lang="el" class="flex items-center space-x-2 text-sm font-medium px-4 py-2 rounded-r-md transition-colors">
+                            <span>🇬🇷</span>
+                            <span>Greece</span>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="text-center">
@@ -116,20 +152,43 @@ document.addEventListener('DOMContentLoaded', () => {
     /*
     1. YENİ FONT (YAZI TİPİ) NASIL EKLENİR?
     ---------------------------------------------
-    Aşağıdaki 'fonts' dizisine yeni bir obje eklemen yeterli.
-    Örnek: { name: 'Yeni Font Adı', family: '"Yeni Font Family", cursive' }
-
-    ÖNEMLİ: Eklediğin fontun çalışması için Google Fonts linkini de güncellemelisin.
-    1. https://fonts.google.com/ adresine git ve istediğin fontu bul.
-    2. Fontu seçtikten sonra sağda açılan menüden <link> kodunu kopyala.
-    3. Bu HTML dosyasının en üstündeki (head etiketi içinde) diğer Google Fonts linkinin yanına yapıştır.
+    ÖNCELİKLE, yukarıdaki <style> etiketi içine @font-face kuralıyla GitHub'dan fontunuzu tanımlayın.
+    Ardından, aşağıdaki 'fonts' dizisine yeni bir obje ekleyin.
+    - name: Ekranda görünecek isim.
+    - family: @font-face içinde tırnak içinde tanımladığınız 'font-family' ismi.
+    
+    Örnek: { name: 'Benim Özel Fontum', family: 'MyCustomFont' }
     */
     const fonts = [
-        { name: 'George', family: '"Ms Madi", cursive' },
-        { name: 'Amsterdam', family: '"Dancing Script", cursive' },
-        { name: 'Barcelona', family: '"Lobster", cursive' },
-        { name: 'Neon Glow', family: '"Pacifico", cursive' },
-        { name: 'Signature', family: '"Sacramento", cursive' },
+        { name: 'Alex Brush', family: 'Alex Brush' },
+        { name: 'Allura', family: 'Allura' },
+        { name: 'Amsterdam', family: 'Amsterdam' },
+        { name: 'Barcelona', family: 'Barcelona' },
+        { name: 'Bayview', family: 'Bayview' },
+        { name: 'Beachfront', family: 'Beachfront' },
+        { name: 'Buttercup', family: 'Buttercup' },
+        { name: 'Chelsea', family: 'Chelsea' },
+        { name: 'Classic', family: 'Classic' },
+        { name: 'Daydream', family: 'Daydream' },
+        { name: 'Freehand', family: 'Freehand' },
+        { name: 'George', family: 'George' },
+        { name: 'Hammock', family: 'Hammock' },
+        { name: 'Honeymoon', family: 'Honeymoon' },
+        { name: 'Marquee', family: 'Marquee' },
+        { name: 'Mayfair', family: 'Mayfair' },
+        { name: 'Melbourne', family: 'Melbourne' },
+        { name: 'Neon Glow', family: 'Neon Glow' },
+        { name: 'Neon Lite', family: 'Neon Lite' },
+        { name: 'Neo Tokyo', family: 'Neo Tokyo' },
+        { name: 'Nevada', family: 'Nevada' },
+        { name: 'North Shore', family: 'North Shore' },
+        { name: 'Photogenic', family: 'Photogenic' },
+        { name: 'Rocket', family: 'Rocket' },
+        { name: 'Royalty', family: 'Royalty' },
+        { name: 'Signature', family: 'Signature' },
+        { name: 'Typewriter', family: 'Typewriter' },
+        { name: 'Vibes', family: 'Vibes' },
+        { name: 'Wild Rose', family: 'Wild Rose' },
     ];
 
     const colors = [
@@ -165,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ÇEVİRİ VERİLERİ ---
     const translations = {
         tr: {
+            languageLabel: "Dilinizi seçin",
             logoQuote: "LOGO MU ARIYORSUNUZ? TEKLİF ALIN",
             chooseText: "1. Metninizi seçin",
             clickBelow: "Neon tabelanızdaki metni düzenlemek için aşağıya tıklayın.",
@@ -177,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             whatsappMessage: (d) => `Tasarım Bilgileri:\n\nMetin: ${d.text}\nYazı Tipi: ${d.font}\nRenk: ${d.color}\n\nBu tasarım için fiyat almak istiyorum, yardımcı olabilir misiniz?`
         },
         el: {
+            languageLabel: "Επιλέξτε τη γλώσσα σας",
             logoQuote: "ΨΑΧΝΕΤΕ ΓΙΑ ΛΟΓΟΤΥΠΟ; ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ",
             chooseText: "1. Επιλέξτε το κείμενό σας",
             clickBelow: "Κάντε κλικ παρακάτω για να επεξεργαστείτε το κείμενο.",
@@ -194,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DURUM (STATE) DEĞİŞKENLERİ ---
     let currentState = {
         text: 'Kendin Tasarla!',
-        font: fonts[0],
+        font: fonts[2], // Amsterdam varsayılan
         color: colors[1], // Gün Işığı varsayılan
         alignment: 'center',
         background: backgrounds[0],
@@ -210,9 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorPickerContainer = document.getElementById('color-picker-container');
     const backgroundPickerContainer = document.getElementById('background-picker-container');
     const finishButton = document.getElementById('finish-button');
-    const languageSelector = document.getElementById('language-selector');
+    const languageButtons = document.getElementById('language-buttons');
 
     // Text elementleri
+    const languageLabel = document.getElementById('language-label');
     const logoQuoteLink = document.getElementById('logo-quote-link');
     const chooseTextTitle = document.getElementById('choose-text-title');
     const clickBelowText = document.getElementById('click-below-text');
@@ -228,12 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const lang = currentState.language;
         const t = translations[lang];
 
+        languageLabel.innerText = t.languageLabel;
         logoQuoteLink.innerText = t.logoQuote;
         chooseTextTitle.innerText = t.chooseText;
         clickBelowText.innerText = t.clickBelow;
         hitReturnText.innerText = t.hitReturn;
         fontSelectionTitle.innerText = t.fontSelection;
-        // Düzeltilen kısım burası
         const viewFontsSpan = viewFontsLink.querySelector('span');
         if (viewFontsSpan) {
             viewFontsSpan.textContent = t.viewFonts;
@@ -243,13 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
         finishButton.innerText = t.finishDesign;
         
         // Dil butonlarının stilini güncelle
-        languageSelector.querySelectorAll('button').forEach(btn => {
+        languageButtons.querySelectorAll('button').forEach(btn => {
             if(btn.dataset.lang === lang) {
-                btn.classList.add('bg-orange-100', 'text-orange-600');
-                btn.classList.remove('text-gray-500');
+                btn.classList.add('bg-orange-500', 'text-white');
+                btn.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-50');
             } else {
-                btn.classList.remove('bg-orange-100', 'text-orange-600');
-                btn.classList.add('text-gray-500');
+                btn.classList.remove('bg-orange-500', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-50');
             }
         });
     }
@@ -398,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    languageSelector.addEventListener('click', (e) => {
+    languageButtons.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button && button.dataset.lang) {
             currentState.language = button.dataset.lang;
