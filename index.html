@@ -219,13 +219,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         { name: 'Gün Işığı', hex: '#fdf4dc', shadow: '#fdf4dc', isMostPopular: true },
         { name: 'Limon Sarı', hex: '#fef001', shadow: '#fef001' },
         { name: 'Amber', hex: '#ffbf00', shadow: '#ffbf00' },
-        { name: 'Turuncu', hex: '#ff7300', shadow: '#ff7300' },
-        { name: 'Kırmızı', hex: '#ff0000', shadow: '#ff0000' },
-        { name: 'Pembe', hex: '#ff86c5', shadow: '#ff86c5' },
-        { name: 'Mor', hex: '#a800ff', shadow: '#a800ff' },
-        { name: 'Parlement Mavi', hex: '#002fff', shadow: '#002fff' },
+        { name: 'Turuncu', hex: '#ff7300', shadow: '#ff7300', isDark: true },
+        { name: 'Kırmızı', hex: '#ff0000', shadow: '#ff0000', isDark: true },
+        { name: 'Pembe', hex: '#ff86c5', shadow: '#ff86c5', isDark: true },
+        { name: 'Mor', hex: '#a800ff', shadow: '#a800ff', isDark: true },
+        { name: 'Parlement Mavi', hex: '#002fff', shadow: '#002fff', isDark: true },
         { name: 'Buz Mavisi', hex: '#00e4ff', shadow: '#00e4ff' },
-        { name: 'Yeşil', hex: '#00ff00', shadow: '#00ff00' },
+        { name: 'Yeşil', hex: '#00ff00', shadow: '#00ff00', isDark: true },
     ];
 
     const backgrounds = [
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentState = {
         text: 'Kendin Tasarla!',
-        font: fonts[2],
+        font: fonts[3],
         color: colors[1],
         alignment: 'center',
         background: backgrounds[0],
@@ -329,9 +329,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         previewText.style.textAlign = currentState.alignment;
         previewText.style.fontFamily = currentState.font.family;
         fontSelector.style.fontFamily = currentState.font.family;
+        
         const shadowColor = currentState.color.shadow;
         previewText.style.color = currentState.color.hex;
-        previewText.style.textShadow = `0 0 5px ${shadowColor}, 0 0 10px ${shadowColor}, 0 0 25px ${shadowColor}`;
+
+        if (currentState.color.isDark) {
+            // Koyu renkler için beyaz çekirdekli daha parlak efekt
+            previewText.style.textShadow = `
+                0 0 4px #fff,
+                0 0 10px ${shadowColor},
+                0 0 20px ${shadowColor}
+            `;
+        } else {
+            // Açık renkler için orijinal efekt
+            previewText.style.textShadow = `
+                0 0 5px ${shadowColor},
+                0 0 10px ${shadowColor},
+                0 0 25px ${shadowColor}
+            `;
+        }
+        
         Object.assign(previewContainer.style, currentState.background.style);
         updateActiveStates();
     }
