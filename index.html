@@ -84,6 +84,16 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        #preview-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3); /* Karartma efekti */
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-black font-sans">
@@ -98,11 +108,11 @@
             
         <!-- Önizleme Alanı -->
         <div id="preview-container" class="flex-grow flex flex-col items-center justify-center p-8 relative lg:w-2/3 transition-all duration-300 bg-cover bg-center" style="background-image: url(&quot;https://customneon.com/create-neon-sign/images/background/liquid-layout/desktop/lounge1.jpg&quot;); background-size: cover;">
-            <div id="preview-text" class="w-full break-words whitespace-pre-wrap text-6xl md:text-8xl transition-all duration-300" style="text-align: center; font-family: &quot;Amsterdam&quot;; color: rgb(253, 244, 220); text-shadow: rgb(253, 244, 220) 0px 0px 5px, rgb(253, 244, 220) 0px 0px 10px, rgb(253, 244, 220) 0px 0px 25px;">
+            <div id="preview-text" class="relative z-10 w-full break-words whitespace-pre-wrap text-6xl md:text-8xl transition-all duration-300" style="text-align: center; font-family: &quot;Amsterdam&quot;; color: rgb(253, 244, 220); text-shadow: rgb(253, 244, 220) 0px 0px 5px, rgb(253, 244, 220) 0px 0px 10px, rgb(253, 244, 220) 0px 0px 25px;">
                 Kendin Tasarla!
             </div>
             
-            <div id="background-picker-container" class="absolute bottom-6 left-6 flex space-x-2 bg-black/40 p-2 rounded-xl backdrop-blur-sm"></div>
+            <div id="background-picker-container" class="absolute bottom-6 left-6 z-10 flex space-x-2 bg-black/40 p-2 rounded-xl backdrop-blur-sm"></div>
         </div>
 
         <!-- Kontrol Paneli -->
@@ -127,9 +137,9 @@
                     <div class="flex justify-between items-center mb-4">
                         <h2 id="choose-text-title" class="font-bold text-xl tracking-wide text-gray-800">1. Choose your text</h2>
                         <div id="alignment-buttons" class="flex items-center justify-end space-x-1">
-                            <button data-align="left" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="17" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
-                            <button data-align="center" class="p-2 rounded-md transition-colors bg-orange-500 text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
-                            <button data-align="right" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                            <button data-align="left" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="17" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                            <button data-align="center" class="p-2 rounded-md transition-colors bg-orange-500 text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                            <button data-align="right" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
                         </div>
                     </div>
                     <p id="click-below-text" class="text-sm text-gray-500 mb-3">Click below to edit the text on your neon sign.</p>
@@ -142,7 +152,7 @@
                     <div class="relative">
                         <select id="font-selector" class="w-full bg-gray-100 border border-gray-300 rounded-lg py-3 px-4 text-black appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"></select>
                         <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
                         </div>
                     </div>
                 </div>
