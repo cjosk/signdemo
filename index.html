@@ -149,10 +149,15 @@
 
                 <div class="space-y-4">
                     <h3 id="font-selection-title" class="font-semibold text-lg text-gray-800">Font Selection</h3>
-                    <div class="relative">
-                        <select id="font-selector" class="w-full bg-gray-100 border border-gray-300 rounded-lg py-3 px-4 text-black appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"></select>
-                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                    <div id="font-selection-container" class="relative">
+                        <button id="font-selector-button" class="w-full bg-orange-500 text-black font-bold rounded-lg py-3 px-4 flex justify-between items-center transition-colors hover:bg-orange-600">
+                            <span id="font-selector-button-text" class="text-lg"></span>
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div id="font-grid" class="hidden absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl p-4 max-h-72 overflow-y-auto">
+                            <div id="font-grid-inner" class="grid grid-cols-3 gap-2">
+                                <!-- Font previews will be injected here by JS -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -265,7 +270,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentState = {
         text: 'Kendin Tasarla!',
-        font: fonts[7],
+        font: fonts[2],
         color: colors[1],
         alignment: 'center',
         background: backgrounds[0],
@@ -277,7 +282,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previewContainer = document.getElementById('preview-container');
     const previewText = document.getElementById('preview-text');
     const textInput = document.getElementById('text-input');
-    const fontSelector = document.getElementById('font-selector');
+    
+    // Yeni Font Seçici Elementleri
+    const fontSelectionContainer = document.getElementById('font-selection-container');
+    const fontSelectorButton = document.getElementById('font-selector-button');
+    const fontSelectorButtonText = document.getElementById('font-selector-button-text');
+    const fontGrid = document.getElementById('font-grid');
+    const fontGridInner = document.getElementById('font-grid-inner');
+
     const alignmentButtonsContainer = document.getElementById('alignment-buttons');
     const colorPickerContainer = document.getElementById('color-picker-container');
     const backgroundPickerContainer = document.getElementById('background-picker-container');
@@ -328,25 +340,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         previewText.innerText = currentState.text || 'Metin Girin';
         previewText.style.textAlign = currentState.alignment;
         previewText.style.fontFamily = currentState.font.family;
-        fontSelector.style.fontFamily = currentState.font.family;
         
         const shadowColor = currentState.color.shadow;
         previewText.style.color = currentState.color.hex;
 
         if (currentState.color.isDark) {
-            // Koyu renkler için beyaz çekirdekli daha parlak efekt
-            previewText.style.textShadow = `
-                0 0 4px #fff,
-                0 0 10px ${shadowColor},
-                0 0 20px ${shadowColor}
-            `;
+            previewText.style.textShadow = `0 0 4px #fff, 0 0 10px ${shadowColor}, 0 0 20px ${shadowColor}`;
         } else {
-            // Açık renkler için orijinal efekt
-            previewText.style.textShadow = `
-                0 0 5px ${shadowColor},
-                0 0 10px ${shadowColor},
-                0 0 25px ${shadowColor}
-            `;
+            previewText.style.textShadow = `0 0 5px ${shadowColor}, 0 0 10px ${shadowColor}, 0 0 25px ${shadowColor}`;
         }
         
         Object.assign(previewContainer.style, currentState.background.style);
@@ -354,15 +355,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateActiveStates() {
+        // Hizalama
         alignmentButtonsContainer.querySelectorAll('button').forEach(btn => {
             if (btn.dataset.align === currentState.alignment) {
-                btn.classList.remove('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
                 btn.classList.add('bg-orange-500', 'text-white');
+                btn.classList.remove('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
             } else {
-                btn.classList.add('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
                 btn.classList.remove('bg-orange-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
             }
         });
+
+        // Renk
         colorPickerContainer.querySelectorAll('[data-color-name]').forEach(div => {
             const ringDiv = div.querySelector('.ring-container');
             if (div.dataset.colorName === currentState.color.name) {
@@ -371,28 +375,56 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ringDiv.classList.remove('ring-2', 'ring-offset-2', 'ring-offset-white', 'ring-orange-500');
             }
         });
+
+        // Arkaplan
         backgroundPickerContainer.querySelectorAll('button').forEach(btn => {
             if (btn.title === currentState.background.name) {
-                 btn.classList.remove('border-white/20');
                  btn.classList.add('border-white', 'ring-2', 'ring-white/50');
+                 btn.classList.remove('border-white/20');
             } else {
-                 btn.classList.add('border-white/20');
                  btn.classList.remove('border-white', 'ring-2', 'ring-white/50');
+                 btn.classList.add('border-white/20');
+            }
+        });
+        
+        // Font Seçici Buton ve Grid
+        fontSelectorButtonText.textContent = currentState.font.name;
+        fontSelectorButtonText.style.fontFamily = currentState.font.family;
+
+        fontGridInner.querySelectorAll('button').forEach(btn => {
+            if (btn.dataset.fontFamily === currentState.font.family) {
+                btn.classList.add('border-orange-500', 'ring-2', 'ring-orange-200');
+                btn.classList.remove('border-gray-200');
+            } else {
+                btn.classList.remove('border-orange-500', 'ring-2', 'ring-orange-200');
+                btn.classList.add('border-gray-200');
             }
         });
     }
 
     function initialize() {
+        // Yeni Font Grid'ini Doldur
+        const previewSampleText = (currentState.text || "Sample").split(' ')[0];
+        fontGridInner.innerHTML = '';
         fonts.forEach(font => {
-            const option = document.createElement('option');
-            option.value = font.family;
-            option.textContent = font.name;
-            option.style.fontFamily = font.family;
-            if (font.family === currentState.font.family) {
-                option.selected = true;
-            }
-            fontSelector.appendChild(option);
+            const fontButton = document.createElement('button');
+            fontButton.className = 'flex flex-col items-center justify-center p-2 border border-gray-200 rounded-md hover:border-orange-500 transition-colors';
+            fontButton.dataset.fontFamily = font.family;
+
+            fontButton.innerHTML = `
+                <span class="w-full text-center truncate text-2xl" style="font-family: '${font.family}';">${previewSampleText}</span>
+                <span class="text-xs mt-1 text-gray-500">${font.name}</span>
+            `;
+            fontButton.addEventListener('click', () => {
+                currentState.font = font;
+                fontGrid.classList.add('hidden');
+                updatePreview();
+            });
+            fontGridInner.appendChild(fontButton);
         });
+
+
+        // Renkleri doldur
         colors.forEach(color => {
             const wrapper = document.createElement('div');
             wrapper.className = 'flex flex-col items-center cursor-pointer group';
@@ -416,6 +448,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             colorPickerContainer.appendChild(wrapper);
         });
+
+        // Arkaplanları doldur
         backgrounds.forEach(bg => {
             const button = document.createElement('button');
             button.className = 'w-14 h-14 rounded-lg transition-all duration-200 border-2 border-white/20 bg-cover bg-center hover:border-white';
@@ -428,21 +462,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             backgroundPickerContainer.appendChild(button);
         });
+
         applyTranslations();
         updatePreview();
     }
 
+    // --- EVENT LISTENERS ---
     textInput.addEventListener('input', (e) => {
         currentState.text = e.target.value;
         updatePreview();
+        // Update font grid previews with new text
+        const newSampleText = (currentState.text || "Sample").split(' ')[0];
+        fontGridInner.querySelectorAll('button span:first-child').forEach(span => {
+            span.textContent = newSampleText;
+        });
     });
-    fontSelector.addEventListener('change', (e) => {
-        const selectedFont = fonts.find(f => f.family === e.target.value);
-        if (selectedFont) {
-            currentState.font = selectedFont;
-            updatePreview();
+
+    fontSelectorButton.addEventListener('click', () => {
+        fontGrid.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!fontSelectionContainer.contains(e.target)) {
+            fontGrid.classList.add('hidden');
         }
     });
+
     alignmentButtonsContainer.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button && button.dataset.align) {
@@ -450,6 +495,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             updatePreview();
         }
     });
+
     languageButtons.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button && button.dataset.lang) {
@@ -457,6 +503,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             applyTranslations();
         }
     });
+
     finishButton.addEventListener('click', () => {
         const designData = {
             text: currentState.text.trim() || "Belirtilmedi",
