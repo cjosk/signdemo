@@ -76,13 +76,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-        }
-        .spinner {
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            height: 100vh;
+            overflow: hidden;
         }
         #preview-container::before {
             content: '';
@@ -91,23 +86,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3); /* Karartma efekti */
+            background-color: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
     </style>
 </head>
 <body class="bg-gray-100 text-black font-sans">
 
-    <!-- Yükleme Ekranı -->
-    <div id="loading-overlay" class="fixed inset-0 bg-white z-50 flex items-center justify-center flex-col space-y-4">
-        <div class="spinner w-12 h-12 border-4 border-orange-500 rounded-full"></div>
-        <p class="text-xl font-semibold text-gray-800">Yazı Tipleri Yükleniyor...</p>
-    </div>
-
-    <div class="min-h-screen flex flex-col lg:flex-row" style="visibility: hidden;">
+    <div class="h-screen flex flex-col lg:flex-row">
             
         <!-- Önizleme Alanı -->
-        <div id="preview-container" class="w-full h-[50vh] lg:h-auto lg:flex-grow flex flex-col items-center justify-center p-4 sm:p-8 relative transition-all duration-300 bg-cover bg-center">
+        <div id="preview-container" class="w-full h-1/2 lg:h-auto lg:flex-grow flex flex-col items-center justify-center p-4 sm:p-8 relative transition-all duration-300 bg-cover bg-center">
             <div id="preview-text" class="relative z-10 w-full break-words whitespace-pre-wrap text-5xl sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-300">
                 Kendin Tasarla!
             </div>
@@ -116,7 +105,7 @@
         </div>
 
         <!-- Kontrol Paneli -->
-        <div class="w-full lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col lg:max-h-screen border-l border-gray-200 flex-grow">
+        <div class="w-full lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col border-l border-gray-200 flex-grow h-1/2 lg:h-auto">
             <div class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 overflow-y-auto flex-grow">
                 
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -138,8 +127,8 @@
                         <h2 id="choose-text-title" class="font-bold text-xl tracking-wide text-gray-800">1. Choose your text</h2>
                         <div id="alignment-buttons" class="flex items-center justify-end space-x-1">
                             <button data-align="left" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="17" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
-                            <button data-align="center" class="p-2 rounded-md transition-colors bg-orange-500 text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
-                            <button data-align="right" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                            <button data-align="center" class="p-2 rounded-md transition-colors bg-orange-500 text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                            <button data-align="right" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
                         </div>
                     </div>
                     <p id="click-below-text" class="text-sm text-gray-500 mb-3">Click below to edit the text on your neon sign.</p>
@@ -183,7 +172,7 @@
     </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     // --- VERİLER ---
     const fonts = [
         { name: 'Alexa', family: 'Alexa' },
@@ -277,8 +266,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         language: 'tr',
     };
 
-    const mainContainer = document.querySelector('.min-h-screen');
-    const loadingOverlay = document.getElementById('loading-overlay');
     const previewContainer = document.getElementById('preview-container');
     const previewText = document.getElementById('preview-text');
     const textInput = document.getElementById('text-input');
@@ -302,15 +289,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const fontSelectionTitle = document.getElementById('font-selection-title');
     const chooseColorTitle = document.getElementById('choose-color-title');
     const whichColorText = document.getElementById('which-color-text');
-
-    async function loadAllFonts() {
-        const fontPromises = fonts.map(font => document.fonts.load(`1em "${font.family}"`));
-        try {
-            await Promise.all(fontPromises);
-        } catch (err) {
-            console.error("Error loading one or more fonts:", err);
-        }
-    }
 
     function applyTranslations() {
         const lang = currentState.language;
@@ -516,10 +494,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Uygulamayı Başlat
-    await loadAllFonts();
-    loadingOverlay.style.display = 'none';
-    mainContainer.style.visibility = 'visible';
     initialize();
+    document.getElementById('loading-overlay').style.display = 'none';
+    document.querySelector('.min-h-screen').style.visibility = 'visible';
+
 });
 </script>
 
