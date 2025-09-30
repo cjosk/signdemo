@@ -39,8 +39,21 @@
         <!-- Kontrol Paneli -->
         <div class="lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col max-h-screen border-l border-gray-200">
             <div class="p-6 md:p-8 space-y-8 overflow-y-auto flex-grow">
+                
+                <!-- Dil Seçici -->
+                <div id="language-selector" class="flex justify-end space-x-4 mb-4">
+                    <button data-lang="tr" class="flex items-center space-x-2 text-sm font-medium p-2 rounded-md">
+                        <span>🇹🇷</span>
+                        <span>Turkish</span>
+                    </button>
+                    <button data-lang="el" class="flex items-center space-x-2 text-sm font-medium p-2 rounded-md">
+                        <span>🇬🇷</span>
+                        <span>Greece</span>
+                    </button>
+                </div>
+                
                 <div class="text-center">
-                    <a href="#" class="text-orange-500 font-semibold text-sm hover:underline tracking-wider">
+                    <a href="#" id="logo-quote-link" class="text-orange-500 font-semibold text-sm hover:underline tracking-wider">
                         LOOKING FOR A LOGO? GET A QUOTE
                     </a>
                 </div>
@@ -48,21 +61,21 @@
                 <!-- Metin Seçimi -->
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="font-bold text-xl tracking-wide text-gray-800">1. Choose your text</h2>
+                        <h2 id="choose-text-title" class="font-bold text-xl tracking-wide text-gray-800">1. Choose your text</h2>
                         <div id="alignment-buttons" class="flex items-center justify-end space-x-1">
                             <button data-align="left" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="17" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
                             <button data-align="center" class="p-2 rounded-md transition-colors bg-orange-500 text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
                             <button data-align="right" class="p-2 rounded-md transition-colors bg-gray-200 text-gray-600 hover:bg-gray-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="7" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-500 mb-3">Click below to edit the text on your neon sign.</p>
+                    <p id="click-below-text" class="text-sm text-gray-500 mb-3">Click below to edit the text on your neon sign.</p>
                     <textarea id="text-input" rows="3" class="w-full bg-gray-100 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 text-black" placeholder="Kendin Tasarla!">Kendin Tasarla!</textarea>
-                    <p class="text-xs text-gray-400 mt-1">Hit Return to go into the next line.</p>
+                    <p id="hit-return-text" class="text-xs text-gray-400 mt-1">Hit Return to go into the next line.</p>
                 </div>
 
                 <!-- Yazı Tipi Seçimi -->
                 <div class="space-y-4">
-                    <h3 class="font-semibold text-lg text-gray-800">Font Selection</h3>
+                    <h3 id="font-selection-title" class="font-semibold text-lg text-gray-800">Font Selection</h3>
                     <div class="relative">
                         <select id="font-selector" class="w-full bg-gray-100 border border-gray-300 rounded-lg py-3 px-4 text-black appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500">
                             <!-- Fontlar buraya JS ile eklenecek -->
@@ -71,16 +84,16 @@
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
                         </div>
                     </div>
-                    <a href="#" class="text-sm text-orange-500 hover:underline flex items-center justify-center">
+                    <a href="#" id="view-fonts-link" class="text-sm text-orange-500 hover:underline flex items-center justify-center">
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                        View Fonts Examples
+                        <span>View Fonts Examples</span>
                     </a>
                 </div>
 
                 <!-- Renk Seçimi -->
                 <div class="space-y-4">
-                    <h2 class="font-bold text-xl tracking-wide text-gray-800">2. Choose your color</h2>
-                    <p class="text-sm text-gray-500">Which color do you want your neon light to be?</p>
+                    <h2 id="choose-color-title" class="font-bold text-xl tracking-wide text-gray-800">2. Choose your color</h2>
+                    <p id="which-color-text" class="text-sm text-gray-500">Which color do you want your neon light to be?</p>
                     <div id="color-picker-container" class="grid grid-cols-6 gap-4">
                         <!-- Renkler buraya JS ile eklenecek -->
                     </div>
@@ -99,6 +112,18 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // --- VERİLER ---
+
+    /*
+    1. YENİ FONT (YAZI TİPİ) NASIL EKLENİR?
+    ---------------------------------------------
+    Aşağıdaki 'fonts' dizisine yeni bir obje eklemen yeterli.
+    Örnek: { name: 'Yeni Font Adı', family: '"Yeni Font Family", cursive' }
+
+    ÖNEMLİ: Eklediğin fontun çalışması için Google Fonts linkini de güncellemelisin.
+    1. https://fonts.google.com/ adresine git ve istediğin fontu bul.
+    2. Fontu seçtikten sonra sağda açılan menüden <link> kodunu kopyala.
+    3. Bu HTML dosyasının en üstündeki (head etiketi içinde) diğer Google Fonts linkinin yanına yapıştır.
+    */
     const fonts = [
         { name: 'George', family: '"Ms Madi", cursive' },
         { name: 'Amsterdam', family: '"Dancing Script", cursive' },
@@ -121,13 +146,50 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Yeşil', hex: '#00ff00', shadow: '#00ff00' },
     ];
 
+    /*
+    2. ARKA PLAN GÖRSELLERİ NASIL DEĞİŞTİRİLİR?
+    ---------------------------------------------
+    Aşağıdaki 'backgrounds' dizisindeki objelerin 'backgroundImage' URL'lerini değiştirerek
+    farklı görseller kullanabilirsin. Yüksek çözünürlüklü ve ücretsiz görseller için
+    https://unsplash.com/ gibi siteleri kullanabilirsin. Beğendiğin bir görselin
+    "Resim adresini kopyala" seçeneği ile URL'sini alıp buraya yapıştırman yeterli.
+    */
     const backgrounds = [
         { name: 'Dark Wall', style: { backgroundColor: '#343a40' } },
-        { name: 'Foliage', style: { backgroundImage: 'url(https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80)', backgroundSize: 'cover' } },
-        { name: 'Brushed Metal', style: { backgroundImage: 'url(https://images.unsplash.com/photo-1594248469339-e97d19a16f27?auto=format&fit=crop&q=80)', backgroundSize: 'cover' } },
-        { name: 'Concrete', style: { backgroundImage: 'url(https://images.unsplash.com/photo-1563286392-f79331e80a0b?auto=format&fit=crop&q=80)', backgroundSize: 'cover' } },
-        { name: 'Brick', style: { backgroundImage: 'url(https://images.unsplash.com/photo-1561021793-163e77f999a1?auto=format&fit=crop&q=80)', backgroundSize: 'cover' } }
+        { name: 'Foliage', style: { backgroundImage: 'url(https://raw.githubusercontent.com/cjosk/createneonsign/refs/heads/main/images/background/background1.jpg)', backgroundSize: 'cover' } },
+        { name: 'Brushed Metal', style: { backgroundImage: 'url(https://raw.githubusercontent.com/cjosk/createneonsign/refs/heads/main/images/background/background2.jpg)', backgroundSize: 'cover' } },
+        { name: 'Concrete', style: { backgroundImage: 'url(https://raw.githubusercontent.com/cjosk/createneonsign/refs/heads/main/images/background/background3.jpg)', backgroundSize: 'cover' } },
+        { name: 'Brick', style: { backgroundImage: 'url(https://raw.githubusercontent.com/cjosk/createneonsign/refs/heads/main/images/background/background4.jpg)', backgroundSize: 'cover' } }
     ];
+
+    // --- ÇEVİRİ VERİLERİ ---
+    const translations = {
+        tr: {
+            logoQuote: "LOGO MU ARIYORSUNUZ? TEKLİF ALIN",
+            chooseText: "1. Metninizi seçin",
+            clickBelow: "Neon tabelanızdaki metni düzenlemek için aşağıya tıklayın.",
+            hitReturn: "Bir sonraki satıra geçmek için Enter'a basın.",
+            fontSelection: "Yazı Tipi Seçimi",
+            viewFonts: "Yazı Tipi Örneklerini Görüntüle",
+            chooseColor: "2. Renginizi seçin",
+            whichColor: "Neon ışığınızın hangi renk olmasını istersiniz?",
+            finishDesign: "TASARIMIMI BİTİR",
+            whatsappMessage: (d) => `Tasarım Bilgileri:\n\nMetin: ${d.text}\nYazı Tipi: ${d.font}\nRenk: ${d.color}\n\nBu tasarım için fiyat almak istiyorum, yardımcı olabilir misiniz?`
+        },
+        el: {
+            logoQuote: "ΨΑΧΝΕΤΕ ΓΙΑ ΛΟΓΟΤΥΠΟ; ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ",
+            chooseText: "1. Επιλέξτε το κείμενό σας",
+            clickBelow: "Κάντε κλικ παρακάτω για να επεξεργαστείτε το κείμενο.",
+            hitReturn: "Πατήστε Enter για νέα γραμμή.",
+            fontSelection: "Επιλογή Γραμματοσειράς",
+            viewFonts: "Προβολή Παραδειγμάτων",
+            chooseColor: "2. Επιλέξτε το χρώμα σας",
+            whichColor: "Τι χρώμα θέλετε το νέον φως σας;",
+            finishDesign: "ΟΛΟΚΛΗΡΩΣΗ ΣΧΕΔΙΟΥ",
+            whatsappMessage: (d) => `Πληροφορίες Σχεδίου:\n\nΚείμενο: ${d.text}\nΓραμματοσειρά: ${d.font}\nΧρώμα: ${d.color}\n\nΘα ήθελα να λάβω μια προσφορά για αυτό το σχέδιο, μπορείτε να με βοηθήσετε;`
+        }
+    };
+
 
     // --- DURUM (STATE) DEĞİŞKENLERİ ---
     let currentState = {
@@ -136,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         color: colors[1], // Gün Işığı varsayılan
         alignment: 'center',
         background: backgrounds[0],
+        language: 'tr',
     };
 
     // --- DOM ELEMENTLERİ ---
@@ -147,8 +210,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorPickerContainer = document.getElementById('color-picker-container');
     const backgroundPickerContainer = document.getElementById('background-picker-container');
     const finishButton = document.getElementById('finish-button');
+    const languageSelector = document.getElementById('language-selector');
 
-    // --- GÜNCELLEME FONKSİYONU ---
+    // Text elementleri
+    const logoQuoteLink = document.getElementById('logo-quote-link');
+    const chooseTextTitle = document.getElementById('choose-text-title');
+    const clickBelowText = document.getElementById('click-below-text');
+    const hitReturnText = document.getElementById('hit-return-text');
+    const fontSelectionTitle = document.getElementById('font-selection-title');
+    const viewFontsLink = document.getElementById('view-fonts-link');
+    const chooseColorTitle = document.getElementById('choose-color-title');
+    const whichColorText = document.getElementById('which-color-text');
+
+
+    // --- GÜNCELLEME FONKSİYONLARI ---
+    function applyTranslations() {
+        const lang = currentState.language;
+        const t = translations[lang];
+
+        logoQuoteLink.innerText = t.logoQuote;
+        chooseTextTitle.innerText = t.chooseText;
+        clickBelowText.innerText = t.clickBelow;
+        hitReturnText.innerText = t.hitReturn;
+        fontSelectionTitle.innerText = t.fontSelection;
+        // Düzeltilen kısım burası
+        const viewFontsSpan = viewFontsLink.querySelector('span');
+        if (viewFontsSpan) {
+            viewFontsSpan.textContent = t.viewFonts;
+        }
+        chooseColorTitle.innerText = t.chooseColor;
+        whichColorText.innerText = t.whichColor;
+        finishButton.innerText = t.finishDesign;
+        
+        // Dil butonlarının stilini güncelle
+        languageSelector.querySelectorAll('button').forEach(btn => {
+            if(btn.dataset.lang === lang) {
+                btn.classList.add('bg-orange-100', 'text-orange-600');
+                btn.classList.remove('text-gray-500');
+            } else {
+                btn.classList.remove('bg-orange-100', 'text-orange-600');
+                btn.classList.add('text-gray-500');
+            }
+        });
+    }
+
     function updatePreview() {
         // Metin
         previewText.innerText = currentState.text || 'Metin Girin';
@@ -159,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Yazı Tipi
         previewText.style.fontFamily = currentState.font.family;
         fontSelector.style.fontFamily = currentState.font.family;
-
 
         // Renk ve Neon Efekti
         const shadowColor = currentState.color.shadow;
@@ -233,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let popularBadge = '';
             if (color.isMostPopular) {
-                popularBadge = `<span class="absolute -top-2 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[8px] px-1.5 py-0.5 rounded-full uppercase font-bold tracking-wider">POPULAR</span>`;
+                popularBadge = `<span class="absolute -top-2 left-1/2 -translate-x-12 bg-orange-500 text-white text-[8px] px-1.5 py-0.5 rounded-full uppercase font-bold tracking-wider">POPULAR</span>`;
             }
 
             wrapper.innerHTML = `
@@ -266,8 +370,8 @@ document.addEventListener('DOMContentLoaded', () => {
             backgroundPickerContainer.appendChild(button);
         });
 
-
-        // Başlangıçta önizlemeyi güncelle
+        // Başlangıçta önizlemeyi ve çevirileri uygula
+        applyTranslations();
         updatePreview();
     }
 
@@ -294,17 +398,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    languageSelector.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (button && button.dataset.lang) {
+            currentState.language = button.dataset.lang;
+            applyTranslations();
+        }
+    });
+
     finishButton.addEventListener('click', () => {
-        const designText = currentState.text.trim() || "Belirtilmedi";
-        const fontName = currentState.font.name;
-        const colorName = currentState.color.name;
+        const designData = {
+            text: currentState.text.trim() || "Belirtilmedi",
+            font: currentState.font.name,
+            color: currentState.color.name
+        };
 
-        const message = `Tasarım Bilgileri:\n\nMetin: ${designText}\nYazı Tipi: ${fontName}\nRenk: ${colorName}\n\nBu tasarım için fiyat almak istiyorum, yardımcı olabilir misiniz?`;
-        
+        const message = translations[currentState.language].whatsappMessage(designData);
         const encodedMessage = encodeURIComponent(message);
-        
         const whatsappUrl = `https://wa.me/905050212131?text=${encodedMessage}`;
-
         window.open(whatsappUrl, '_blank');
     });
 
@@ -315,3 +426,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
