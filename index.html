@@ -40,14 +40,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /*
-        GITHUB'DAN FONT NASIL EKLENİR?
-        ---------------------------------------------
-        Aşağıya her bir font için bir @font-face bloğu ekleyin.
-        - 'font-family' kısmına fonta vermek istediğiniz ismi yazın (bu ismi JS'de kullanacağız).
-        - 'src: url(...)' kısmına GitHub'daki font dosyasının RAW linkini yapıştırın.
-          GitHub'da font dosyasına gidin, "Raw" butonuna tıklayın ve açılan sayfanın URL'sini kopyalayın.
-        */
         @font-face { font-family: 'Alex Brush'; src: url('https://cdn.jsdelivr.net/gh/cjosk/createneonsign@6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Alex-Brush.ttf') format('truetype'); }
         @font-face { font-family: 'Allura'; src: url('https://cdn.jsdelivr.net/gh/cjosk/createneonsign@6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Allura.ttf') format('truetype'); }
         @font-face { font-family: 'Amsterdam'; src: url('https://cdn.jsdelivr.net/gh/cjosk/createneonsign@6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Amsterdam.ttf') format('truetype'); }
@@ -78,15 +70,27 @@
         @font-face { font-family: 'Vibes'; src: url('https://cdn.jsdelivr.net/gh/cjosk/createneonsign@6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Vibes.ttf') format('truetype'); }
         @font-face { font-family: 'Wild Rose'; src: url('https://cdn.jsdelivr.net/gh/cjosk/createneonsign@6fa52701c5beb7fdbbf22a8e02f23d63cad959b4/css/fonts/custom/Wild-Rose.ttf') format('truetype'); }
 
-        /* Ekstra stiller ve font tanımlamaları */
         body {
-            font-family: 'Inter', sans-serif; /* Tailwind'in varsayılan fontu */
+            font-family: 'Inter', sans-serif;
+        }
+        .spinner {
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="bg-gray-100 text-black font-sans">
 
-    <div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Yükleme Ekranı -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white z-50 flex items-center justify-center flex-col space-y-4">
+        <div class="spinner w-12 h-12 border-4 border-orange-500 rounded-full"></div>
+        <p class="text-xl font-semibold text-gray-800">Yazı Tipleri Yükleniyor...</p>
+    </div>
+
+    <div class="min-h-screen flex flex-col lg:flex-row" style="visibility: hidden;">
             
         <!-- Önizleme Alanı -->
         <div id="preview-container" class="flex-grow flex flex-col items-center justify-center p-8 relative lg:w-2/3 transition-all duration-300 bg-cover bg-center" style="background-image: url(&quot;https://customneon.com/create-neon-sign/images/background/liquid-layout/desktop/lounge1.jpg&quot;); background-size: cover;">
@@ -94,17 +98,13 @@
                 Kendin Tasarla!
             </div>
             
-            <!-- Arkaplan Seçici -->
-            <div id="background-picker-container" class="absolute bottom-6 left-6 flex space-x-2 bg-black/40 p-2 rounded-xl backdrop-blur-sm">
-                <!-- Arkaplanlar buraya JS ile eklenecek -->
-            </div>
+            <div id="background-picker-container" class="absolute bottom-6 left-6 flex space-x-2 bg-black/40 p-2 rounded-xl backdrop-blur-sm"></div>
         </div>
 
         <!-- Kontrol Paneli -->
         <div class="lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col max-h-screen border-l border-gray-200">
             <div class="p-6 md:p-8 space-y-8 overflow-y-auto flex-grow">
                 
-                <!-- Dil Seçici -->
                 <div class="flex justify-between items-center mb-6">
                     <span id="language-label" class="text-sm font-medium text-gray-700">Choose your language</span>
                     <div id="language-buttons" class="flex items-center border border-gray-200 rounded-lg">
@@ -125,7 +125,6 @@
                     </a>
                 </div>
 
-                <!-- Metin Seçimi -->
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <h2 id="choose-text-title" class="font-bold text-xl tracking-wide text-gray-800">1. Choose your text</h2>
@@ -140,13 +139,10 @@
                     <p id="hit-return-text" class="text-xs text-gray-400 mt-1">Hit Return to go into the next line.</p>
                 </div>
 
-                <!-- Yazı Tipi Seçimi -->
                 <div class="space-y-4">
                     <h3 id="font-selection-title" class="font-semibold text-lg text-gray-800">Font Selection</h3>
                     <div class="relative">
-                        <select id="font-selector" class="w-full bg-gray-100 border border-gray-300 rounded-lg py-3 px-4 text-black appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500">
-                            <!-- Fontlar buraya JS ile eklenecek -->
-                        </select>
+                        <select id="font-selector" class="w-full bg-gray-100 border border-gray-300 rounded-lg py-3 px-4 text-black appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"></select>
                         <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
                         </div>
@@ -157,17 +153,13 @@
                     </a>
                 </div>
 
-                <!-- Renk Seçimi -->
                 <div class="space-y-4">
                     <h2 id="choose-color-title" class="font-bold text-xl tracking-wide text-gray-800">2. Choose your color</h2>
                     <p id="which-color-text" class="text-sm text-gray-500">Which color do you want your neon light to be?</p>
-                    <div id="color-picker-container" class="grid grid-cols-6 gap-4">
-                        <!-- Renkler buraya JS ile eklenecek -->
-                    </div>
+                    <div id="color-picker-container" class="grid grid-cols-6 gap-4"></div>
                 </div>
             </div>
 
-            <!-- Bitir Butonu -->
             <div class="p-6 bg-white border-t border-gray-200">
                 <button id="finish-button" class="w-full bg-orange-500 text-white font-bold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors text-lg tracking-wider">
                     FINISH MY DESIGN
@@ -177,19 +169,8 @@
     </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // --- VERİLER ---
-
-    /*
-    1. YENİ FONT (YAZI TİPİ) NASIL EKLENİR?
-    ---------------------------------------------
-    ÖNCELİKLE, yukarıdaki <style> etiketi içine @font-face kuralıyla GitHub'dan fontunuzu tanımlayın.
-    Ardından, aşağıdaki 'fonts' dizisine yeni bir obje ekleyin.
-    - name: Ekranda görünecek isim.
-    - family: @font-face içinde tırnak içinde tanımladığınız 'font-family' ismi.
-    
-    Örnek: { name: 'Benim Özel Fontum', family: 'MyCustomFont' }
-    */
     const fonts = [
         { name: 'Alex Brush', family: 'Alex Brush' },
         { name: 'Allura', family: 'Allura' },
@@ -236,14 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Yeşil', hex: '#00ff00', shadow: '#00ff00' },
     ];
 
-    /*
-    2. ARKA PLAN GÖRSELLERİ NASIL DEĞİŞTİRİLİR?
-    ---------------------------------------------
-    Aşağıdaki 'backgrounds' dizisindeki objelerin 'backgroundImage' URL'lerini değiştirerek
-    farklı görseller kullanabilirsin. Yüksek çözünürlüklü ve ücretsiz görseller için
-    https://unsplash.com/ gibi siteleri kullanabilirsin. Beğendiğin bir görselin
-    "Resim adresini kopyala" seçeneği ile URL'sini alıp buraya yapıştırman yeterli.
-    */
     const backgrounds = [
         { name: 'Dark Wall', style: { backgroundImage: 'url(https://customneon.com/create-neon-sign/images/background/liquid-layout/desktop/lounge1.jpg)', backgroundSize: 'cover' } },
         { name: 'Foliage', style: { backgroundImage: 'url(https://customneon.com/create-neon-sign/images/background/liquid-layout/desktop/office1.jpg)', backgroundSize: 'cover' } },
@@ -252,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Brick', style: { backgroundImage: 'url(https://customneon.com/create-neon-sign/images/background/liquid-layout/desktop/green1.jpg)', backgroundSize: 'cover' } }
     ];
 
-    // --- ÇEVİRİ VERİLERİ ---
     const translations = {
         tr: {
             languageLabel: "Dilinizi seçin",
@@ -282,18 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
-    // --- DURUM (STATE) DEĞİŞKENLERİ ---
     let currentState = {
         text: 'Kendin Tasarla!',
-        font: fonts[2], // Amsterdam varsayılan
-        color: colors[1], // Gün Işığı varsayılan
+        font: fonts[2],
+        color: colors[1],
         alignment: 'center',
         background: backgrounds[0],
         language: 'tr',
     };
 
-    // --- DOM ELEMENTLERİ ---
+    const mainContainer = document.querySelector('.min-h-screen');
+    const loadingOverlay = document.getElementById('loading-overlay');
     const previewContainer = document.getElementById('preview-container');
     const previewText = document.getElementById('preview-text');
     const textInput = document.getElementById('text-input');
@@ -303,8 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundPickerContainer = document.getElementById('background-picker-container');
     const finishButton = document.getElementById('finish-button');
     const languageButtons = document.getElementById('language-buttons');
-
-    // Text elementleri
     const languageLabel = document.getElementById('language-label');
     const logoQuoteLink = document.getElementById('logo-quote-link');
     const chooseTextTitle = document.getElementById('choose-text-title');
@@ -315,12 +284,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const chooseColorTitle = document.getElementById('choose-color-title');
     const whichColorText = document.getElementById('which-color-text');
 
+    async function loadAllFonts() {
+        const fontPromises = fonts.map(font => document.fonts.load(`1em "${font.family}"`));
+        try {
+            await Promise.all(fontPromises);
+        } catch (err) {
+            console.error("Error loading one or more fonts:", err);
+        }
+    }
 
-    // --- GÜNCELLEME FONKSİYONLARI ---
     function applyTranslations() {
         const lang = currentState.language;
         const t = translations[lang];
-
         languageLabel.innerText = t.languageLabel;
         logoQuoteLink.innerText = t.logoQuote;
         chooseTextTitle.innerText = t.chooseText;
@@ -334,8 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chooseColorTitle.innerText = t.chooseColor;
         whichColorText.innerText = t.whichColor;
         finishButton.innerText = t.finishDesign;
-        
-        // Dil butonlarının stilini güncelle
         languageButtons.querySelectorAll('button').forEach(btn => {
             if(btn.dataset.lang === lang) {
                 btn.classList.add('bg-orange-500', 'text-white');
@@ -348,34 +321,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePreview() {
-        // Metin
         previewText.innerText = currentState.text || 'Metin Girin';
-        
-        // Hizalama
         previewText.style.textAlign = currentState.alignment;
-        
-        // Yazı Tipi
         previewText.style.fontFamily = currentState.font.family;
         fontSelector.style.fontFamily = currentState.font.family;
-
-        // Renk ve Neon Efekti
         const shadowColor = currentState.color.shadow;
         previewText.style.color = currentState.color.hex;
-        previewText.style.textShadow = `
-            0 0 5px ${shadowColor},
-            0 0 10px ${shadowColor},
-            0 0 25px ${shadowColor}
-        `;
-
-        // Arkaplan
+        previewText.style.textShadow = `0 0 5px ${shadowColor}, 0 0 10px ${shadowColor}, 0 0 25px ${shadowColor}`;
         Object.assign(previewContainer.style, currentState.background.style);
-
-        // Aktif butonları güncelle
         updateActiveStates();
     }
 
     function updateActiveStates() {
-        // Hizalama butonları
         alignmentButtonsContainer.querySelectorAll('button').forEach(btn => {
             if (btn.dataset.align === currentState.alignment) {
                 btn.classList.remove('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
@@ -385,8 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('bg-orange-500', 'text-white');
             }
         });
-
-        // Renk seçiciler
         colorPickerContainer.querySelectorAll('[data-color-name]').forEach(div => {
             const ringDiv = div.querySelector('.ring-container');
             if (div.dataset.colorName === currentState.color.name) {
@@ -395,8 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ringDiv.classList.remove('ring-2', 'ring-offset-2', 'ring-offset-white', 'ring-orange-500');
             }
         });
-
-        // Arkaplan seçiciler
         backgroundPickerContainer.querySelectorAll('button').forEach(btn => {
             if (btn.title === currentState.background.name) {
                  btn.classList.remove('border-white/20');
@@ -408,9 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- İLK KURULUM ---
     function initialize() {
-        // Fontları doldur
         fonts.forEach(font => {
             const option = document.createElement('option');
             option.value = font.family;
@@ -421,18 +372,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             fontSelector.appendChild(option);
         });
-
-        // Renkleri doldur
         colors.forEach(color => {
             const wrapper = document.createElement('div');
             wrapper.className = 'flex flex-col items-center cursor-pointer group';
             wrapper.dataset.colorName = color.name;
-
             let popularBadge = '';
             if (color.isMostPopular) {
                 popularBadge = `<span class="absolute -top-2 left-1/2 -translate-x-12 bg-orange-500 text-white text-[8px] px-1.5 py-0.5 rounded-full uppercase font-bold tracking-wider">POPULAR</span>`;
             }
-
             wrapper.innerHTML = `
                 <div class="relative">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ring-container">
@@ -448,8 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             colorPickerContainer.appendChild(wrapper);
         });
-
-        // Arkaplanları doldur
         backgrounds.forEach(bg => {
             const button = document.createElement('button');
             button.className = 'w-14 h-14 rounded-lg transition-all duration-200 border-2 border-white/20 bg-cover bg-center hover:border-white';
@@ -462,19 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             backgroundPickerContainer.appendChild(button);
         });
-
-        // Başlangıçta önizlemeyi ve çevirileri uygula
         applyTranslations();
         updatePreview();
     }
 
-
-    // --- EVENT LISTENERS ---
     textInput.addEventListener('input', (e) => {
         currentState.text = e.target.value;
         updatePreview();
     });
-
     fontSelector.addEventListener('change', (e) => {
         const selectedFont = fonts.find(f => f.family === e.target.value);
         if (selectedFont) {
@@ -482,7 +422,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePreview();
         }
     });
-
     alignmentButtonsContainer.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button && button.dataset.align) {
@@ -490,7 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePreview();
         }
     });
-
     languageButtons.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button && button.dataset.lang) {
@@ -498,21 +436,22 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTranslations();
         }
     });
-
     finishButton.addEventListener('click', () => {
         const designData = {
             text: currentState.text.trim() || "Belirtilmedi",
             font: currentState.font.name,
             color: currentState.color.name
         };
-
         const message = translations[currentState.language].whatsappMessage(designData);
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/905050212131?text=${encodedMessage}`;
         window.open(whatsappUrl, '_blank');
     });
 
-    // Uygulamayı başlat
+    // Uygulamayı Başlat
+    await loadAllFonts();
+    loadingOverlay.style.display = 'none';
+    mainContainer.style.visibility = 'visible';
     initialize();
 });
 </script>
