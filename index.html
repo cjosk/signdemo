@@ -107,7 +107,7 @@
     <div class="min-h-screen flex flex-col lg:flex-row" style="visibility: hidden;">
             
         <!-- Önizleme Alanı -->
-        <div id="preview-container" class="flex-grow flex flex-col items-center justify-center p-4 sm:p-8 relative lg:w-2/3 transition-all duration-300 bg-cover bg-center">
+        <div id="preview-container" class="w-full h-[50vh] lg:h-auto lg:flex-grow flex flex-col items-center justify-center p-4 sm:p-8 relative transition-all duration-300 bg-cover bg-center">
             <div id="preview-text" class="relative z-10 w-full break-words whitespace-pre-wrap text-5xl sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-300">
                 Kendin Tasarla!
             </div>
@@ -116,10 +116,10 @@
         </div>
 
         <!-- Kontrol Paneli -->
-        <div class="lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col lg:max-h-screen border-l border-gray-200">
+        <div class="w-full lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col lg:max-h-screen border-l border-gray-200 flex-grow">
             <div class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 overflow-y-auto flex-grow">
                 
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 mb-6">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
                     <span id="language-label" class="text-sm font-medium text-gray-700">Choose your language</span>
                     <div id="language-buttons" class="flex items-center border border-gray-200 rounded-lg self-start sm:self-center">
                         <button data-lang="tr" class="flex items-center space-x-2 text-sm font-medium px-3 py-2 sm:px-4 rounded-l-md transition-colors">
