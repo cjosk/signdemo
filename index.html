@@ -76,8 +76,6 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            height: 100vh;
-            overflow: hidden;
         }
         #preview-container::before {
             content: '';
@@ -93,10 +91,10 @@
 </head>
 <body class="bg-gray-100 text-black font-sans">
 
-    <div class="h-screen flex flex-col lg:flex-row">
+    <div class="lg:h-screen lg:flex">
             
         <!-- Önizleme Alanı -->
-        <div id="preview-container" class="w-full h-1/2 lg:h-auto lg:flex-grow flex flex-col items-center justify-center p-4 sm:p-8 relative transition-all duration-300 bg-cover bg-center">
+        <div id="preview-container" class="sticky top-0 z-10 w-full h-[50vh] lg:h-auto lg:relative lg:w-2/3 flex flex-col items-center justify-center p-4 sm:p-8 transition-all duration-300 bg-cover bg-center">
             <div id="preview-text" class="relative z-10 w-full break-words whitespace-pre-wrap text-5xl sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-300">
                 Kendin Tasarla!
             </div>
@@ -105,7 +103,7 @@
         </div>
 
         <!-- Kontrol Paneli -->
-        <div class="w-full lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col border-l border-gray-200 flex-grow h-1/2 lg:h-auto">
+        <div class="w-full lg:w-[450px] lg:min-w-[450px] bg-white flex flex-col border-l border-gray-200 lg:h-screen">
             <div class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 overflow-y-auto flex-grow">
                 
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -158,7 +156,7 @@
                 </div>
             </div>
 
-            <div class="p-4 sm:p-6 bg-white border-t border-gray-200">
+            <div class="p-4 sm:p-6 bg-white border-t border-gray-200 mt-auto">
                  <div class="text-center mb-4">
                     <a href="#" id="logo-quote-link" class="text-orange-500 font-semibold text-sm hover:underline tracking-wider">
                         LOOKING FOR A LOGO? GET A QUOTE
@@ -501,4 +499,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
