@@ -76,6 +76,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
         }
         #preview-container::before {
             content: '';
@@ -110,11 +112,11 @@
                     <span id="language-label" class="text-sm font-medium text-gray-700">Choose your language</span>
                     <div id="language-buttons" class="flex items-center border border-gray-200 rounded-lg self-start sm:self-center">
                         <button data-lang="tr" class="flex items-center space-x-2 text-sm font-medium px-3 py-2 sm:px-4 rounded-l-md transition-colors">
-                            <span>🇹🇷</span>
+                            <img src="https://flagcdn.com/w20/tr.png" alt="Turkish Flag" class="w-5 h-auto">
                             <span>Turkish</span>
                         </button>
                         <button data-lang="el" class="flex items-center space-x-2 text-sm font-medium px-3 py-2 sm:px-4 rounded-r-md transition-colors">
-                            <span>🇬🇷</span>
+                            <img src="https://flagcdn.com/w20/gr.png" alt="Greek Flag" class="w-5 h-auto">
                             <span>Greece</span>
                         </button>
                     </div>
@@ -288,6 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const chooseColorTitle = document.getElementById('choose-color-title');
     const whichColorText = document.getElementById('which-color-text');
 
+    function convertTurkishChars(text) {
+        const map = {
+            'ı': 'i', 'İ': 'I', 'ğ': 'g', 'Ğ': 'G', 'ü': 'u', 'Ü': 'U',
+            'ş': 's', 'Ş': 'S', 'ö': 'o', 'Ö': 'O', 'ç': 'c', 'Ç': 'C'
+        };
+        return text.replace(/[ıİğĞüÜşŞöÖçÇ]/g, function(m) { return map[m]; });
+    }
+
     function applyTranslations() {
         const lang = currentState.language;
         const t = translations[lang];
@@ -444,9 +454,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- EVENT LISTENERS ---
     textInput.addEventListener('input', (e) => {
-        currentState.text = e.target.value;
+        const convertedText = convertTurkishChars(e.target.value);
+        currentState.text = convertedText;
+        
+        if (e.target.value !== convertedText) {
+            const start = e.target.selectionStart;
+            const end = e.target.selectionEnd;
+            e.target.value = convertedText;
+            e.target.setSelectionRange(start, end);
+        }
+
         updatePreview();
-        // Update font grid previews with new text
+        
         const newSampleText = (currentState.text || "Sample").split(' ')[0];
         fontGridInner.querySelectorAll('button span:first-child').forEach(span => {
             span.textContent = newSampleText;
@@ -499,3 +518,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
